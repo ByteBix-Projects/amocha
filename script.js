@@ -92,15 +92,22 @@ document.addEventListener("DOMContentLoaded", (event) => {
         gsap.from(el, {
             scrollTrigger: {
                 trigger: el,
-                start: "top 85%",
-                toggleActions: "play none none reverse"
+                start: "top 95%",
+                toggleActions: "play none none none"
             },
             y: 50,
             opacity: 0,
             duration: 0.8,
             ease: "power2.out",
-            delay: el.dataset.delay || 0
+            delay: parseFloat(el.dataset.delay || 0)
         });
+    });
+    
+    // Refresh ScrollTrigger after images load
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            ScrollTrigger.refresh();
+        }, 500);
     });
 
     // Fade Left animations
